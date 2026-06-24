@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consequence Counselor - Decision Impact Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🎯 Consequence Counselor</h1>
+            </div>
+            <div class="nav-links">
+                <button class="nav-btn active" onclick="showCounselorDashboard()">Counselor</button>
+                <button class="nav-btn" onclick="showClientGame()">Client Experience</button>
+            </div>
+        </nav>
+
+        <div id="counselor-dashboard" class="section active">
+            <div class="dashboard-container">
+                <h2>👨‍💼 Counselor Dashboard</h2>
+                <p class="subtitle">Create a personalized session for your client</p>
+
+                <form id="counselor-form" class="form-section">
+                    <div class="form-group">
+                        <label for="client-name">Client Name</label>
+                        <input type="text" id="client-name" placeholder="Enter client's name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="client-age">Age</label>
+                            <input type="number" id="client-age" min="8" max="18" placeholder="Age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-grade">Grade/Year</label>
+                            <input type="text" id="client-grade" placeholder="e.g., 9th Grade" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scenario-type">Scenario Type</label>
+                        <select id="scenario-type" required>
+                            <option value="">Select a scenario...</option>
+                            <option value="substance">Substance Use</option>
+                            <option value="bullying">Bullying & Peer Pressure</option>
+                            <option value="academic">Academic Dishonesty</option>
+                            <option value="relationships">Unhealthy Relationships</option>
+                            <option value="social-media">Social Media Misuse</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specific-situation">Specific Situation (Optional)</label>
+                        <textarea id="specific-situation" placeholder="Describe the specific situation the client is facing..." rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Generate Session</button>
+                </form>
+
+                <div id="session-info" class="session-info hidden">
+                    <h3>Session Ready</h3>
+                    <p>Session created for <strong id="session-client-name"></strong></p>
+                    <p>Scenario: <strong id="session-scenario"></strong></p>
+                    <button class="btn btn-secondary" onclick="showClientGame()">Start Client Experience</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="client-game" class="section">
+            <div class="game-container">
+                <div id="welcome-screen" class="screen active">
+                    <div class="welcome-content">
+                        <h2>👋 Welcome, <span id="welcome-name"></span>!</h2>
+                        <p class="welcome-text">Let's explore some important decisions together.</p>
+                        <p class="welcome-subtext">This is a safe space to think through choices and their consequences.</p>
+                        <button class="btn btn-large" onclick="startGame()">Begin Journey</button>
+                    </div>
+                </div>
+
+                <div id="game-screen" class="screen">
+                    <div class="game-header">
+                        <div class="wellbeing-meter">
+                            <h3>Your Wellbeing</h3>
+                            <div class="meter-bar">
+                                <div id="wellbeing-fill" class="meter-fill"></div>
+                            </div>
+                            <p id="wellbeing-text">100%</p>
+                        </div>
+                        <div class="question-counter">
+                            <p id="question-counter-text">Question 1 of 5</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-section">
+                        <div id="scenario-display" class="scenario-box">
+                            <p id="scenario-text"></p>
+                        </div>
+                    </div>
+
+                    <div class="choices-section">
+                        <h3>What would you do?</h3>
+                        <div id="choices-container" class="choices-grid"></div>
+                    </div>
+
+                    <div id="animation-container" class="animation-container hidden">
+                        <div class="heart-animation">❤️</div>
+                    </div>
+                </div>
+
+                <div id="result-screen" class="screen">
+                    <div class="result-content">
+                        <h2 id="result-title"></h2>
+                        <div id="consequence-display" class="consequence-box">
+                            <p id="consequence-text"></p>
+                        </div>
+                        <div id="personalized-message" class="personalized-message">
+                            <p id="personal-text"></p>
+                        </div>
+                        <button class="btn btn-primary" onclick="handleNextQuestion()">Continue</button>
+                        <button class="btn btn-secondary" onclick="showCounselorDashboard()">Back to Counselor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
